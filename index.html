@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
     <link rel="stylesheet" href="./style.css">
     <title>EntertainMe</title>
 </head>
@@ -15,7 +19,7 @@
             <div class="navHeader">EntertainMe</div>
             <div class="navLinks">
                 <ul class="navLinks">
-                    <li>Login</li>
+                    <li id="navLinks_login">Login</li>
                     <li>Sign Up</li>
                 </ul>
             </div>
@@ -32,8 +36,15 @@
         <section class="container footer_left">3</section>
         <section class="container footer_right">4</section>
     </div>
-    <script src="./src/main.js"></script>
+    <div id="firebaseui-auth-container"></div>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-firestore.js"></script>
     <script src="./src/apiKeys.js"></script>
+    <script src="./src/main.js"></script>
     <script src="./src/firebase.js"></script>
 </body>
 
