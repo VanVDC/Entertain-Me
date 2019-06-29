@@ -1,0 +1,182 @@
+html {
+    background-color: #151519;
+}
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.container {
+    border: 1px solid #e3b23c;
+    border-radius: 4px;
+}
+/* Font Design */
+@import url(//db.onlinewebfonts.com/c/5721c258554db5405f1e10d6cbe056d1?family=FrankfurterHigD);
+nav {
+    color: rgb(12, 11, 11);
+    background: #e3b23c;
+    grid-column: 1/ span 2;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 1px;
+    border-radius: 4px;
+}
+/*nav:hover{
+    cursor: pointer;
+    background: #e3b23c;
+}*/
+.navLinks {
+    margin-left: 20px;
+    align-self: center;
+    /* justify-self: flex-end; */
+}
+.navLinks >ul {
+    list-style: none;
+    justify-self: flex-end;
+}
+.navLinks>ul>li {
+    display: inline-block;
+    margin: 10px;
+    font-family: 'FrankfurterHigD';
+}
+.navHeader {
+    font-family: 'FrankfurterHigD';
+    flex-grow: 1;
+    margin: 10px;
+    align-self: center;
+    text-transform: capitalize;
+    letter-spacing: 5px;
+}
+
+main {
+    grid-column: 1/ span 2;
+    grid-row: 2;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.main_container {
+    flex-grow: 1;
+}
+button{
+    font-family: 'FrankfurterHigD';
+    color: #6E675F;
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    width: 80%;
+    height: 110px;
+    border: 1px;
+    font-size: 90px;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+    letter-spacing: 10px;
+}
+button:focus{
+    outline: none;
+}
+button:before{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 60px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: .6s;
+    filter: blur(30px);
+    transform: translate(-130px) skewX(-15deg);
+}
+button:after{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    top: 0;
+    left: 30px;
+    opacity: 0;
+    filter: blur(30px);
+    transform: translate(-100px) scaleX(-15deg);
+}
+button:hover{
+    cursor: pointer;
+    background: #e3b23c;
+}
+button:hover:before{
+    transform: translate(300px) skewX(-15deg);
+    opacity: .7s;
+    transition: 7s;
+}
+button:hover:after{
+    transform: translate(300px) skewX(-15deg);
+    opacity: 1;
+    transition: 7s;
+}
+.save {
+    font-family: 'FrankfurterHigD';
+    color: #6E675F;
+    position: absolute;
+    align-items: center;
+    bottom: 16%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    width: 33%;
+    height: 45px;
+    border: 1px;
+    font-size: 30px;
+    border-radius: 4px;
+    transition: .6s;
+    letter-spacing: 3px;
+}
+.container_footer_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 120px;
+    color: #6E675F;
+    font-family: 'FrankfurterHigD';
+    text-align: center;
+    align-items: center;
+    transform: translate(-5, -5%);
+    background: none;
+    border: 1px;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+}
+.container_footer_left:hover {
+    cursor: pointer;
+    background: #e3b23c;
+}
+.container_footer_right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 120px;
+    color: #6E675F;
+    font-family: 'FrankfurterHigD';
+    text-align: center;
+    align-items: center;
+    transform: translate(-5, -5%);
+    background: none;
+    border: 1px;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+}
+.container_footer_right:hover {
+    cursor: pointer;
+    background: #e3b23c;
+}
