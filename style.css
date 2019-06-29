@@ -4,12 +4,11 @@ html {
 
 .wrapper {
     height: 100%;
-    width: 100%;
+    width: 90%;
+    margin: auto;
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr;
-    margin: 20px;
-    overflow: none;
 }
 
 .container {
@@ -23,18 +22,17 @@ nav {
     height: 50px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly
+    width: 100%;
 }
 
 .navLinks {
-    margin: 0px 10px;
+    margin-left: auto;
     align-self: center;
-    /* justify-self: flex-end; */
 }
 
 .navLinks>ul {
     list-style: none;
-    justify-self: flex-end;
+    margin-left: auto;
 }
 
 .navLinks>ul>li {
@@ -43,8 +41,6 @@ nav {
 }
 
 .navHeader {
-    flex-grow: 1;
-    margin: 5px;
     align-self: center;
 }
 
@@ -62,6 +58,8 @@ main {
 .main_container {
     box-sizing: border-box;
     display: flex;
+    width: 50%;
+    height: 50%;
 }
 
 section {
@@ -117,7 +115,7 @@ section {
 
 a.button1 {
     display: inline-block;
-    padding: 0.35em 1.2em;
+    padding: 0.35em 0.2em;
     border: 0.1em solid #FFFFFF;
     margin: 0 0.3em 0.3em 0;
     border-radius: 0.12em;
@@ -186,6 +184,7 @@ a.button7 {
     box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17), inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15), inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
     text-align: center;
     position: relative;
+    cursor: pointer;
 }
 
 a.button7:active {
