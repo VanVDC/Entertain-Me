@@ -1,9 +1,9 @@
 var apiResults = $('#apiResults')
 $('#entertainMeBtn').click(() => {
     //This portion sets our iframe element to hide
-    youtubeVideoDiv.css('opacity', '0');
-    youtubeVideoDiv.css('display', 'none');
-    youtubeVideoDiv.attr('src', ``);
+    youtubeVideoDivContainer.css('opacity', '0');
+    youtubeVideoDivContainer.css('display', 'none');
+    stopVideo();
     let random = Math.floor((Math.random() * 3) + 1);
     console.log(random)
     if (random === 1) {
