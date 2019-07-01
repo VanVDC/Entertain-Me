@@ -63,7 +63,15 @@ main {
     justify-content: space-evenly;
 }
 .main_container {
-    flex-grow: 1;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    margin: auto;
+    box-sizing: border-box;
+}
+#apiResults{
+    width: 100%;
+
 }
 button{
     font-family: 'FrankfurterHigD';
@@ -122,6 +130,20 @@ button:hover:after{
     transform: translate(300px) skewX(-15deg);
     opacity: 1;
     transition: 7s;
+}
+#playerContainer {
+    display: none;
+    opacity: 0;
+
+}
+
+@keyframes videoOn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 .save {
     font-family: 'FrankfurterHigD';
