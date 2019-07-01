@@ -1,29 +1,27 @@
-//movies api
+// //movies api
 
-// const urlLink ='http://www.omdbapi.com/?apikey=3430a78&s=';
-// const search='superman';
-// const movieSearch=urlLink+search;
 
-// async function getMovies(){
-//     const rawMovies =await fetch(movieSearch);
-//     const movie = await rawMovies.json();
-//     const {Title,Poster}=movie.Search[0];
-//     console.log(Poster);
-   
-//     let img = document.createElement('img');
-    
-//     img.setAttribute('src',Poster);
-    
+async function getMovies(t){
+    const urlLink ='http://www.omdbapi.com/?apikey=3430a78&s=';
+    const movieSearch=urlLink+t;
+    const rawMovies =await fetch(movieSearch);
+    const movie = await rawMovies.json();
+    const movData=movie.Search; 
 
-//     document.getElementById('render').appendChild(img);
+    for(var i=0; i<movData.length;i++){
+        const {Title,Poster,Year}=movie.Search[i]; 
+        if(Title==t&&Year>=2018&&Poster!="N/A"){
+            return Poster;
 
-// }
+        }
+    }
+}
 
-// getMovies();
+
 
 //====================
 
-//books api
+// //books api
 
 // const bookSearch='harrypotter';
 // const googleApi='https://www.googleapis.com/books/v1/volumes?q='+ bookSearch;
@@ -46,33 +44,59 @@
 // NYT top books and movies
 
 
-// const nytURL='https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key='+key;
+var ranNum= Math.floor((Math.random() * 10) + 1);
+
 
 // async function getNYT(){
+//     const nytURL='https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key='+key.NYT;
 //     const rawNYTBooks= await fetch(nytURL);
 //     const nytbooks=await rawNYTBooks.json();
-//     const{title, author, book_image, description, amazon_product_url}=nytbooks.results.books[1];
+//     //data
+//     let {title, author, book_image, description, amazon_product_url}=nytbooks.results.books[ranNum];
 
 //     let img = document.createElement('img');
 //     img.setAttribute('src', book_image);
+//     document.getElementById('title').textContent=title;
+    
+//     document.getElementById('apiResults').appendChild(img);
+//     document.getElementById('summary').textContent=description;
 
-//     document.getElementById('render').appendChild(img);
+//     let a =document.createElement('a');
+//     a.setAttribute('href', amazon_product_url);
+//     document.getElementById('amazon').appendChild(a);
+
 // }
 
 // getNYT();
-//========================
+// //========================
 
-// const nytMovie='https://api.nytimes.com/svc/movies/v2/reviews/picks.json?api-key='+key;
 
-// async function getNYTMoviesPick(){
-//     const rawNYTMovies= await fetch(nytMovie);
-//     const nytMovies=await rawNYTMovies.json();
-//     const{display_title, summary_short, multimedia}=nytMovies.results[1];
+async function getNYTMoviesPick(){
 
-//     let img = document.createElement('img');
-//     img.setAttribute('src', multimedia.src);
 
-//     document.getElementById('render').appendChild(img);
-// }
+    const nytMovie='https://api.nytimes.com/svc/movies/v2/reviews/picks.json?api-key='+key.NYT;
+    const rawNYTMovies= await fetch(nytMovie);
+    const nytMovies=await rawNYTMovies.json();
+    //data
+    const{display_title, summary_short, multimedia}=nytMovies.results[ranNum];
 
-// getNYTMoviesPick();
+
+    var pic =getMovies(display_title);
+
+    let img = document.createElement('img');
+
+    if(display_title=='')
+
+    img.setAttribute('src',multimedia.src);
+    
+
+    document.getElementById('title').textContent=display_title;
+    document.getElementById('apiResults').appendChild(img);
+    document.getElementById('title').textContent=summary_short;
+
+
+    
+}
+
+getNYTMoviesPick();
+
