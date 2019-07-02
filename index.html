@@ -24,7 +24,6 @@
             <div class="navLinks">
                 <ul class="navLinks">
                     <li><a id="navLinks_login" link=''>Login</a></li>
-                    <li>Sign Up</li>
                 </ul>
             </div>
         </nav>
@@ -50,7 +49,12 @@
         <section class="container_footer_left">About Us</section>
         <section class="container_footer_right">Saved</section>
     </div>
-    <div id="firebaseui-auth-container"></div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">x</span>
+            <div id="firebaseui-auth-container"></div>
+        </div>
+    </div>
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
 
