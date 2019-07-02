@@ -62,6 +62,7 @@ main {
     height: 50%;
 }
 
+
 section {
     height: 200px;
 }
@@ -89,6 +90,12 @@ section {
         opacity: 1;
     }
 }
+
+/* Testing */
+#title, #amazon{
+    background: red;
+}
+
 
 
 /* 
