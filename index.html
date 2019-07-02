@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./style.css">
-    <link href="//db.onlinewebfonts.com/c/5721c258554db5405f1e10d6cbe056d1?family=FrankfurterHigD" rel="stylesheet" type="text/css"/>
+    <link href="//db.onlinewebfonts.com/c/5721c258554db5405f1e10d6cbe056d1?family=FrankfurterHigD" rel="stylesheet"
+        type="text/css" />
     <!-- <script src="https://www.youtube.com/iframe_api"></script> -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -14,36 +16,37 @@
     <link rel="stylesheet" href="./style.css">
     <title>EntertainMe</title>
 </head>
+
 <body>
     <div class="wrapper">
         <nav class="container">
             <div class="navHeader">Entertain Me</div>
             <div class="navLinks">
                 <ul class="navLinks">
-                    <li><a id="navLinks_login"link=''>Login</a></li>
+                    <li><a id="navLinks_login" link=''>Login</a></li>
                     <li>Sign Up</li>
                 </ul>
             </div>
         </nav>
-    <main class="container">
-        <div class="main_container">
-            <div class="button">
-                <button id="entertainMeBtn">Entertain Me</button>
-            </div>
-        </div>
-        <div class="main_container">
-            <div id="apiResults">
-                <div class="" id="playerContainer" style="width: 100%; height: 100%;">
-                    <div class="" id="player"></div>
+        <main class="container">
+            <div class="main_container" id="buttonContainer">
+                <div class="button">
+                    <button id="entertainMeBtn">Entertain Me</button>
                 </div>
             </div>
-        </div>
-        <div class="main_container">
-            <div class="save">
-                <button class="save" id="saveButton">Save</button>
+            <div class="main_container_api main_container">
+                <div id="apiResults">
+                    <div class="" id="playerContainer" style="width: 100%; height: 100%;">
+                        <div class="" id="player"></div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </main>
+            <div class="main_container">
+                <div class="save">
+                    <button id="saveButton">Save</button>
+                </div>
+            </div>
+        </main>
         <section class="container_footer_left">About Us</section>
         <section class="container_footer_right">Saved</section>
     </div>
@@ -61,5 +64,5 @@
     <script src="./src/youtubeApi.js"></script>
     <script src="./src/main.js"></script>
 </body>
-    
+
 </html>

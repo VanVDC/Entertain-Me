@@ -8,6 +8,7 @@ html {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr;
+    margin: 15px;
 }
 
 .container {
@@ -56,6 +57,7 @@ nav {
 
 main {
     grid-column: 1/ span 2;
+    width: 100%;
     grid-row: 2;
     height: 600px;
     display: flex;
@@ -69,6 +71,24 @@ main {
     margin: auto;
     box-sizing: border-box;
 }
+.main_container_api {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    margin: auto;
+    box-sizing: border-box;
+}
+#buttonContainer{
+    width: 100%;
+    margin: 10px auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+}
+#entertainMeBtn {
+    font-size: 90px;
+}
 #apiResults{
     width: 100%;
 
@@ -76,50 +96,20 @@ main {
 button{
     font-family: 'FrankfurterHigD';
     color: #6E675F;
-    position: absolute;
-    top: 18%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background: none;
-    width: 80%;
+    width: 100%;
     height: 110px;
     border: 1px;
-    font-size: 90px;
-    border-radius: 4px;
-    transition: .6s;
-    overflow: hidden;
+    border-radius: 25px;
     letter-spacing: 10px;
 }
-button:focus{
-    outline: none;
-}
-button:before{
-    content: '';
-    display: block;
-    position: absolute;
-    width: 60px;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: .6s;
-    filter: blur(30px);
-    transform: translate(-130px) skewX(-15deg);
-}
-button:after{
-    content: '';
-    display: block;
-    position: absolute;
-    width: 30px;
-    height: 100%;
-    top: 0;
-    left: 30px;
-    opacity: 0;
-    filter: blur(30px);
-    transform: translate(-100px) scaleX(-15deg);
-}
-button:hover{
+
+
+button:hover,button:focus{
+    transition: background 1s;
     cursor: pointer;
     background: #e3b23c;
+    
 }
 button:hover:before{
     transform: translate(300px) skewX(-15deg);
@@ -147,20 +137,16 @@ button:hover:after{
 }
 .save {
     font-family: 'FrankfurterHigD';
-    color: #6E675F;
-    position: absolute;
-    align-items: center;
-    bottom: 16%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    color: #6E675F;;
     background: none;
-    width: 33%;
-    height: 45px;
     border: 1px;
     font-size: 30px;
     border-radius: 4px;
-    transition: .6s;
     letter-spacing: 3px;
+    margin: 10px auto;
+}
+#saveButton{
+    font-size: 40px;
 }
 .container_footer_left {
     display: flex;
