@@ -17,3 +17,10 @@ $('#entertainMeBtn').click(() => {
         getMovies()
     }
 })
+
+
+
+
+
+
+
