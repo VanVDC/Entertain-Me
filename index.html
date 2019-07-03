@@ -33,9 +33,15 @@
                     <button id="entertainMeBtn">Entertain Me</button>
                 </div>
             </div>
-            <div class="main_container_api main_container">
-                <div id="apiResults">
-                    <div class="" id="playerContainer" style="width: 100%; height: 100%;">
+            <div class="main_container main_container_api">
+                <div class="apiResults">
+                    <div id="nyt_tmdb">
+                        <img src="" id="img" alt="">
+                        <h2 id="title"></h2>
+                        <p id="summary"></p>
+                        <a href="" id="amazonURL">Amazon</a>
+                    </div>
+                    <div class="" id="playerContainer">
                         <div class="" id="player"></div>
                     </div>
                 </div>
@@ -63,6 +69,7 @@
     <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
     <script src="./src/apiKeys.js"></script>
+    <script src="./src/vanApi.js"></script>
     <script src="./src/firebase.js"></script>
     <script src="./src/firebaseDB.js"></script>
     <script src="./src/youtubeApi.js"></script>
