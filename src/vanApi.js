@@ -1,4 +1,5 @@
-
+var currentMovie;
+var currentBook;
 
 async function getNYT() {
 
@@ -6,14 +7,17 @@ async function getNYT() {
     const rawNYTBooks = await fetch(nytURL);
     const nytbooks = await rawNYTBooks.json(); //create a New York Time URL
     let ran = Math.floor((Math.random() * 15) + 1) // create a random number for API index
+
+    //Created a global var to assign data to be store for firebasedb
+    currentBook = nytbooks.results.books[ran]
     //data
     let { title, author, book_image, description, amazon_product_url } = nytbooks.results.books[ran];
 
-    console.log(book_image);
-    console.log(title);
-    console.log(author);
-    console.log(description);
-    console.log(amazon_product_url);
+    // console.log(book_image);
+    // console.log(title);
+    // console.log(author);
+    // console.log(description);
+    // console.log(amazon_product_url);
 
 
     let img = document.getElementById('img'); // get the img tag
@@ -50,11 +54,15 @@ async function getMovies() {
     const rawData = await fetch(url); // get the raw data
     const movieData = await rawData.json(); // get the movies data
 
+    //Adding a global var assignment for firebaseDB
+    currentMovie = movieData.results[ran]
+
+
     const { poster_path, overview, original_title, } = movieData.results[ran]; //data
 
-    console.log(imgLink + poster_path);
-    console.log(original_title);
-    console.log(overview);
+    // console.log(imgLink + poster_path);
+    // console.log(original_title);
+    // console.log(overview);
 
     let img = document.getElementById('img'); // get the img tag
     img.setAttribute('src', imgLink + poster_path);
