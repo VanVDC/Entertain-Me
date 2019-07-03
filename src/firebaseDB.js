@@ -1,21 +1,27 @@
 var db = firebase.firestore();
 var userVidIds
 var video;
-
-var saveBtn = $('#saveButton')
+var isUsrLoggedIn = false;
+var saveBtn = document.getElementById('saveButton')
+//This UID will be used for our saved function. 
+//It is assigned a value when the user logs in.
+var uid;
 
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
+
         // User is signed in.
+        isUsrLoggedIn = true;
         var displayName = user.displayName;
         var email = user.email;
         var emailVerified = user.emailVerified;
         var photoURL = user.photoURL;
         var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
+        uid = user.uid;
         var providerData = user.providerData;
         //....
+        document.getElementsByClassName('save')[0].setAttribute('style', 'display: block;');
         try {
             readData(uid)
             userDataHTML(displayName, uid)
@@ -27,11 +33,8 @@ firebase.auth().onAuthStateChanged(function (user) {
                 location = `./index.html`
             }, function (error) { });
         })
-        console.log(uid)
-        saveBtn.click(() => {
-            saveData(uid, player.getVideoData());
-        })
     } else {
+        isUsrLoggedIn = false;
         login.addClass('bouncy');
         login.text('Login');
         login.click(() => {
@@ -52,10 +55,21 @@ function userDataHTML(name, uid, ) {
         })
     }
 }
-function saveData(uid, videoData) {
-    db.collection('users').doc(uid).update({
-        videoIds: firebase.firestore.FieldValue.arrayUnion(videoData)
-    })
+
+function saveData(uid, type, data) {
+    if (type === 'video') {
+        db.collection('users').doc(uid).update({
+            videoIds: firebase.firestore.FieldValue.arrayUnion(data)
+        })
+    } else if (type === 'book') {
+        db.collection('users').doc(uid).update({
+            books: firebase.firestore.FieldValue.arrayUnion(data)
+        })
+    } else if (type === 'movie') {
+        db.collection('users').doc(uid).update({
+            movies: firebase.firestore.FieldValue.arrayUnion(data)
+        })
+    }
     return readData(uid)
 }
 
@@ -63,8 +77,10 @@ function readData(uid) {
     var docRef = db.collection("users").doc(uid);
     docRef.get().then(function (doc) {
         if (doc.exists) {
-            console.log("Document data:", doc.data().videoIds);
+            console.log("Document data:", doc.data());
             userVidIds = doc.data().videoIds;
+            userbooks = doc.data().books;
+            usermovies = doc.data().movies;
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
