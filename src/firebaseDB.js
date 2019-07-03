@@ -1,6 +1,7 @@
 var db = firebase.firestore();
 var userVidIds
 var video;
+var isUsrLoggedIn = false;
 var saveBtn = document.getElementById('saveButton')
 //This UID will be used for our saved function. 
 //It is assigned a value when the user logs in.
@@ -9,7 +10,9 @@ var uid;
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
+
         // User is signed in.
+        isUsrLoggedIn = true;
         var displayName = user.displayName;
         var email = user.email;
         var emailVerified = user.emailVerified;
@@ -31,6 +34,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             }, function (error) { });
         })
     } else {
+        isUsrLoggedIn = false;
         login.addClass('bouncy');
         login.text('Login');
         login.click(() => {
