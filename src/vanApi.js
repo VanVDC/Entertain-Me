@@ -51,7 +51,6 @@ console.log(url);
 
 async function getMovies() {
    
-    let movieId=0;
     let ran = Math.floor((Math.random() * 19) + 1) //crate a random number for the index
 
     //when you login and saved a movie..show similar movies to the saved one.
@@ -65,11 +64,13 @@ async function getMovies() {
         const idMovieUrl='https://api.themoviedb.org/3/movie/'+userMovies[rand].id+'/similar?api_key='+key.tmdb+'&language=en-US&page=1'
         const idRaw=await fetch(idMovieUrl);
         const idMovieData=await idRaw.json();
+        
 
         const{poster_path, overview, original_title}=idMovieData.results[ran];
-        console.log(p)
-
-        console.log(idMovieData);
+        let img1 = document.getElementById('img'); // get the img tag
+        img1.setAttribute('src', imgLink + poster_path);
+        document.getElementById('title').textContent = original_title; //render the title
+        document.getElementById('summary').textContent = overview; // render the summary
 
         
     }else{ 
@@ -80,8 +81,7 @@ async function getMovies() {
         currentMovie = movieData.results[ran]
     
     
-        const { poster_path, overview, original_title,id } = movieData.results[ran]; //data
-         movieId=id;
+        const { poster_path, overview, original_title } = movieData.results[ran]; //data
     
         let img = document.getElementById('img'); // get the img tag
         img.setAttribute('src', imgLink + poster_path);
