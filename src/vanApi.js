@@ -67,6 +67,7 @@ async function getMovies() {
         const idMovieData=await idRaw.json();
 
         const{poster_path, overview, original_title}=idMovieData.results[ran];
+        console.log(p)
 
         console.log(idMovieData);
 
