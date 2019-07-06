@@ -55,8 +55,12 @@ async function getMovies() {
     let ran = Math.floor((Math.random() * 19) + 1) //crate a random number for the index
 
     //when you login and saved a movie..show similar movies to the saved one.
-    if(userMovies){
-        let rand = Math.floor((Math.random() * userMovies.length) + 1)
+    if(isUsrLoggedIn && userMovies[0] != undefined){
+        let rand=0;
+        if(userMovies.length >1){
+            rand = Math.floor((Math.random() * userMovies.length) + 1);
+        }
+        
         console.log(userMovies[rand])
         const idMovieUrl='https://api.themoviedb.org/3/movie/'+userMovies[rand].id+'/similar?api_key='+key.tmdb+'&language=en-US&page=1'
         const idRaw=await fetch(idMovieUrl);
