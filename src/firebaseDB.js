@@ -1,5 +1,7 @@
 var db = firebase.firestore();
-var userVidIds
+var userVidIds;
+var userBooks;
+var userMovies;
 var video;
 var isUsrLoggedIn = false;
 var saveBtn = document.getElementById('saveButton')
@@ -77,10 +79,9 @@ function readData(uid) {
     var docRef = db.collection("users").doc(uid);
     docRef.get().then(function (doc) {
         if (doc.exists) {
-            console.log("Document data:", doc.data());
             userVidIds = doc.data().videoIds;
-            userbooks = doc.data().books;
-            usermovies = doc.data().movies;
+            userBooks = doc.data().books;
+            userMovies = doc.data().movies;
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
