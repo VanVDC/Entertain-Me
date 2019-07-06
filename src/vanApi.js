@@ -47,27 +47,44 @@ const endUrl = 'ac&language=en-US&page=1';
 const imgLink = 'https://image.tmdb.org/t/p/w500';
 
 const url = baseUrl + search.popular + key1; //create the URL
+console.log(url);
 
 async function getMovies() {
+   
+    let movieId=0;
     let ran = Math.floor((Math.random() * 19) + 1) //crate a random number for the index
 
-    const rawData = await fetch(url); // get the raw data
-    const movieData = await rawData.json(); // get the movies data
+    //when you login and saved a movie..show similar movies to the saved one.
+    if(userMovies){
+        let rand = Math.floor((Math.random() * userMovies.length) + 1)
+        console.log(userMovies[rand])
+        const idMovieUrl='https://api.themoviedb.org/3/movie/'+userMovies[rand].id+'/similar?api_key='+key.tmdb+'&language=en-US&page=1'
+        const idRaw=await fetch(idMovieUrl);
+        const idMovieData=await idRaw.json();
 
-    //Adding a global var assignment for firebaseDB
-    currentMovie = movieData.results[ran]
+        const{poster_path, overview, original_title}=idMovieData.results[ran];
 
+        console.log(idMovieData);
 
-    const { poster_path, overview, original_title, } = movieData.results[ran]; //data
+        
+    }else{ 
+        const rawData = await fetch(url); // get the raw data
+        const movieData = await rawData.json(); // get the movies data
+    
+        //Adding a global var assignment for firebaseDB
+        currentMovie = movieData.results[ran]
+    
+    
+        const { poster_path, overview, original_title,id } = movieData.results[ran]; //data
+         movieId=id;
+    
+        let img = document.getElementById('img'); // get the img tag
+        img.setAttribute('src', imgLink + poster_path);
+        document.getElementById('title').textContent = original_title; //render the title
+        document.getElementById('summary').textContent = overview; // render the summary
+    }
 
-    // console.log(imgLink + poster_path);
-    // console.log(original_title);
-    // console.log(overview);
-
-    let img = document.getElementById('img'); // get the img tag
-    img.setAttribute('src', imgLink + poster_path);
-    document.getElementById('title').textContent = original_title; //render the title
-    document.getElementById('summary').textContent = overview; // render the summary
+    
 
 }
 // getMovies()
