@@ -7,7 +7,7 @@ var bestCookingVidsId = [{ video_id: "vEROU2XtPR8", author: "Traversy Media", ti
 
 //This function calls out to the youtube search api using one of the Ids from our array.
 var giveMeRandomVid = () => {
-    if (userVidIds === undefined) {
+    if (userVidIds[0] === undefined) {
         userVidIds = bestCookingVidsId;
     }
     let vidId = userVidIds[randNum(0, userVidIds.length)]

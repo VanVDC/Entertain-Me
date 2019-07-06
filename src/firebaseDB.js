@@ -1,6 +1,7 @@
 var db = firebase.firestore();
 var userVidIds;
 var userBooks;
+var userSongs;
 var userMovies;
 var video;
 var isUsrLoggedIn = false;
@@ -37,7 +38,6 @@ firebase.auth().onAuthStateChanged(function (user) {
         })
     } else {
         isUsrLoggedIn = false;
-        login.addClass('bouncy');
         login.text('Login');
         login.click(() => {
             ui.start('#firebaseui-auth-container', uiConfig);
@@ -60,6 +60,7 @@ function userDataHTML(name, uid, ) {
 
 function saveData(uid, type, data) {
     if (type === 'video') {
+        // debugger;
         db.collection('users').doc(uid).update({
             videoIds: firebase.firestore.FieldValue.arrayUnion(data)
         })
@@ -71,9 +72,15 @@ function saveData(uid, type, data) {
         db.collection('users').doc(uid).update({
             movies: firebase.firestore.FieldValue.arrayUnion(data)
         })
+    } else if (type === 'song') {
+        db.collection('users').doc(uid).update({
+            songs: firebase.firestore.FieldValue.arrayUnion(data)
+        })
     }
     return readData(uid)
 }
+
+
 
 function readData(uid) {
     var docRef = db.collection("users").doc(uid);
@@ -83,13 +90,15 @@ function readData(uid) {
             userVidIds = doc.data().videoIds;
             userBooks = doc.data().books;
             userMovies = doc.data().movies;
+            userSongs = doc.data().songs;
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
             db.collection("users").doc(uid).set({
-                videoIds :[],
-                books :[],
-                movies :[]
+                videoIds: [],
+                books: [],
+                movies: [],
+                songs: []
             })
         }
     }).catch(function (error) {

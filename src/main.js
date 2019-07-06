@@ -26,6 +26,10 @@ $('#entertainMeBtn').click(() => {
         })
         document.getElementById('nyt_tmdb').setAttribute('style', 'display: block');
         getMovies()
+    } else if (random == 4) {
+        saveBtn.addEventListener('click', () => {
+            saveData(uid, 'song', song)
+        })
     }
 })
 
