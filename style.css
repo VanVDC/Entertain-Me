@@ -129,7 +129,8 @@ button:hover:after{
 #playerContainer {
     display: none;
     opacity: 0;
-
+    width: 400px;
+    height: 300px;
 }
 
 @keyframes videoOn {
