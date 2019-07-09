@@ -5,7 +5,7 @@ $('#entertainMeBtn').click(() => {
     youtubeVideoDivContainer.css('display', 'none');
     document.getElementById('nyt_tmdb').setAttribute('style', 'display: none;');
     stopVideo();
-    let random = Math.floor((Math.random() * 3) + 1);
+    let random = Math.floor((Math.random() * 4) + 1);
     console.log(random);
     if (random === 1) {
         giveMeRandomVid()
@@ -15,6 +15,9 @@ $('#entertainMeBtn').click(() => {
     } else if (random === 3) {
         document.getElementById('nyt_tmdb').setAttribute('style', 'display: block');
         getMovies()
+    } else if (random === 4){
+        document.getElementById('nyt_tmdb').setAttribute('style', 'display: block');
+        newRandomSong()
     }
 })
 
