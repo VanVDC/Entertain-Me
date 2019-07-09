@@ -17,7 +17,6 @@ var giveMeRandomVid = () => {
     } else {
         videoList = curatedVideos
     }
-    debugger;
     let vidId = videoList[randNum(0, videoList.length)]
     var random = randNum(1, vidId.items.length)
     video = vidId.items[random].id.videoId;
