@@ -1,5 +1,3 @@
-var CLIENTID = "Eq8KSecb2Yz4Lq--EUjuGWH_8OifHCRwdwHr1ztKdLx5Qk_zCZG--AXPSQzMXhL-";
-var CLIENTSECRET = "-3Ynmxt9BZab3Qs5sbr_GdzGxXoGqSqbSISFuEQwquYeVm-5-A3nFIcgUOvDSY731GT-hhJtvTK5jYDccT7juQ";
 var accessToken= "?access_token=CXyFeSBw2lAdG41xkuU3LS6a_nwyxwwCz2dCkUohw-rw0C49x2HqP__6_4is5RPx";
 var API = "https://api.genius.com/search";
 var APISong = "https://api.genius.com/songs/";
@@ -49,14 +47,13 @@ function randomSong(){
   json = JSON.parse(demo);
   song = json['response']['song'];
   
-  document.getElementById("songImage").innerHTML = "<img src=\""+song['song_art_image_url']+"\"alt=\"Some Awesome Album Art\" style=\"width:200px;height:200px;\">";
+  let img = document.getElementById('img');
+  
+  img.setAttribute('src', song['song_art_image_url']);
+  
+  //document.getElementById("title").innerHTML = "<a href = 'https://www.youtube.com/results?search_query= "+song['title']+" "+song['primary_artist']['name']+"'><img src = "+song['song_art_image_url']+"></img></a>";
 
-  document.getElementById("song").innerHTML = "SONG: "+song['title'].toUpperCase();
+  document.getElementById("summary").innerHTML = "SONG: "+song['title'].toUpperCase();
  
-  document.getElementById("artist").innerHTML = "ARTIST: " + song['primary_artist']['name'].toUpperCase();
-
-}
-
-function playSong(){
-  window.open("https://www.youtube.com/results?search_query= "+song['title']+" "+song['primary_artist']['name']+"");
+  document.getElementById("empty").innerHTML = "ARTIST: " + song['primary_artist']['name'].toUpperCase();
 }
