@@ -50,46 +50,47 @@ const url = baseUrl + search.popular + key1; //create the URL
 console.log(url);
 
 async function getMovies() {
-   
+
     let ran = Math.floor((Math.random() * 19) + 1) //crate a random number for the index
 
     //when you login and saved a movie..show similar movies to the saved one.
-    if(isUsrLoggedIn && userMovies[0] != undefined){
-        let rand=0;
-        if(userMovies.length >1){
-            rand = Math.floor((Math.random() * userMovies.length) + 1);
+    if (isUsrLoggedIn && userMovies[0] != undefined) {
+        let rand = 0;
+        if (userMovies.length > 1) {
+            rand = Math.floor((Math.random() * userMovies.length) + 0);
         }
-        
-        console.log(userMovies[rand])
-        const idMovieUrl='https://api.themoviedb.org/3/movie/'+userMovies[rand].id+'/similar?api_key='+key.tmdb+'&language=en-US&page=1'
-        const idRaw=await fetch(idMovieUrl);
-        const idMovieData=await idRaw.json();
-        
 
-        const{poster_path, overview, original_title}=idMovieData.results[ran];
+        console.log(rand)
+        const idMovieUrl = 'https://api.themoviedb.org/3/movie/' + userMovies[rand].id + '/similar?api_key=' + key.tmdb + '&language=en-US&page=1'
+        const idRaw = await fetch(idMovieUrl);
+        const idMovieData = await idRaw.json();
+
+
+        const { poster_path, overview, original_title } = idMovieData.results[ran];
+        currentMovie = idMovieData.results[ran];
         let img1 = document.getElementById('img'); // get the img tag
         img1.setAttribute('src', imgLink + poster_path);
         document.getElementById('title').textContent = original_title; //render the title
         document.getElementById('summary').textContent = overview; // render the summary
 
-        
-    }else{ 
+
+    } else {
         const rawData = await fetch(url); // get the raw data
         const movieData = await rawData.json(); // get the movies data
-    
+
         //Adding a global var assignment for firebaseDB
         currentMovie = movieData.results[ran]
-    
-    
+
+
         const { poster_path, overview, original_title } = movieData.results[ran]; //data
-    
+
         let img = document.getElementById('img'); // get the img tag
         img.setAttribute('src', imgLink + poster_path);
         document.getElementById('title').textContent = original_title; //render the title
         document.getElementById('summary').textContent = overview; // render the summary
     }
 
-    
+
 
 }
 // getMovies()

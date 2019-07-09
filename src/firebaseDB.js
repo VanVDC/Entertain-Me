@@ -13,7 +13,6 @@ var uid;
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-
         // User is signed in.
         isUsrLoggedIn = true;
         var displayName = user.displayName;
@@ -58,25 +57,32 @@ function userDataHTML(name, uid, ) {
     }
 }
 
-function saveData(uid, type, data) {
-    if (type === 'video') {
-        // debugger;
-        db.collection('users').doc(uid).update({
-            videoIds: firebase.firestore.FieldValue.arrayUnion(data)
-        })
-    } else if (type === 'book') {
-        db.collection('users').doc(uid).update({
-            books: firebase.firestore.FieldValue.arrayUnion(data)
-        })
-    } else if (type === 'movie') {
-        db.collection('users').doc(uid).update({
-            movies: firebase.firestore.FieldValue.arrayUnion(data)
-        })
-    } else if (type === 'song') {
-        db.collection('users').doc(uid).update({
-            songs: firebase.firestore.FieldValue.arrayUnion(data)
-        })
+
+function saveVid(uid, data) {
+    db.collection('users').doc(uid).update({
+        videoIds: firebase.firestore.FieldValue.arrayUnion(data)
+    })
+    if (userVidIds.length > 3 && userVidIds.length < 10) {
+        reccomendVideos()
     }
+}
+
+function saveBook(uid, data) {
+    db.collection('users').doc(uid).update({
+        books: firebase.firestore.FieldValue.arrayUnion(data)
+    })
+    return readData(uid)
+}
+function saveMovie(uid, data) {
+    db.collection('users').doc(uid).update({
+        movies: firebase.firestore.FieldValue.arrayUnion(data)
+    })
+    return readData(uid)
+}
+function saveSong(uid, data) {
+    db.collection('users').doc(uid).update({
+        songs: firebase.firestore.FieldValue.arrayUnion(data)
+    })
     return readData(uid)
 }
 

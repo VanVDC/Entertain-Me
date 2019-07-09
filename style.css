@@ -242,3 +242,9 @@ button:hover:after{
       text-align: center;
       display: none;
   }
+
+  #errorStats {
+      font-size: 25px;
+      color: red;
+      text-align: center;
+  }
