@@ -65,6 +65,7 @@ function saveVid(uid, data) {
     if (userVidIds.length > 3 && userVidIds.length < 10) {
         reccomendVideos()
     }
+    return readData()
 }
 
 function saveBook(uid, data) {

@@ -1,5 +1,6 @@
 var apiResults = $('#apiResults')
 var random;
+var saveBtn = $('#saveButton')
 $('#entertainMeBtn').click(() => {
     //This portion sets our iframe element to hide
     youtubeVideoDivContainer.css('opacity', '0');
@@ -10,25 +11,25 @@ $('#entertainMeBtn').click(() => {
     random = Math.floor((Math.random() * 3) + 1);
     console.log(random);
     if (random === 1) {
-        saveBtn.addEventListener('click', () => {
-            saveVid(uid, 'video', player.getVideoData())
+        saveBtn.click(() => {
+            saveVid(uid, player.getVideoData())
         })
         giveMeRandomVid()
     } else if (random === 2) {
-        saveBtn.addEventListener('click', () => {
-            saveBook(uid, 'book', currentBook)
+        saveBtn.click(() => {
+            saveBook(uid, currentBook)
         })
         document.getElementById('nyt_tmdb').setAttribute('style', 'display: block');
         getNYT()
     } else if (random === 3) {
-        saveBtn.addEventListener('click', () => {
-            saveMovie(uid, 'movie', currentMovie)
+        saveBtn.click(() => {
+            saveMovie(uid, currentMovie)
         })
         document.getElementById('nyt_tmdb').setAttribute('style', 'display: block');
         getMovies()
     } else if (random == 4) {
-        saveBtn.addEventListener('click', () => {
-            saveSong(uid, 'song', song)
+        saveBtn.click(() => {
+            saveSong(uid, song)
         })
     }
 })
