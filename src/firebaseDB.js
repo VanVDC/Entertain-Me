@@ -62,10 +62,10 @@ function saveVid(uid, data) {
     db.collection('users').doc(uid).update({
         videoIds: firebase.firestore.FieldValue.arrayUnion(data)
     })
-    if (userVidIds.length > 3 && userVidIds.length < 10) {
+    if (userVidIds.length > 3 && userVidIds.length < 5) {
         reccomendVideos()
     }
-    return readData()
+    return readData(uid)
 }
 
 function saveBook(uid, data) {
@@ -93,7 +93,7 @@ function readData(uid) {
     var docRef = db.collection("users").doc(uid);
     docRef.get().then(function (doc) {
         if (doc.exists) {
-            console.log("Document data:", doc.data());
+            // console.log("Document data:", doc.data());
             userVidIds = doc.data().videoIds;
             userBooks = doc.data().books;
             userMovies = doc.data().movies;

@@ -17,10 +17,14 @@ var giveMeRandomVid = () => {
     } else {
         videoList = curatedVideos
     }
-    debugger;
-    let vidId = videoList[randNum(0, videoList.length)]
-    var random = randNum(1, vidId.items.length)
-    video = vidId.items[random].id.videoId;
+    if (videoList === undefined) {
+        videoList = bestCookingVidsId;
+        video = videoList[randNum(0, videoList.length)].video_id;
+    } else {
+        let vidId = videoList[randNum(0, videoList.length)]
+        var random = randNum(1, vidId.items.length)
+        video = vidId.items[random].id.videoId;
+    }
     if (video) {
         player.loadVideoById(video)
     } else {
@@ -55,7 +59,7 @@ function reccomendVideos() {
 
 
 function getUserRecommendeds(video) {
-    var youtubeApi = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&relatedToVideoId=${video.video_id}&type=video&key=${firebaseConfig.apiKey}`
+    var youtubeApi = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&relatedToVideoId=${video.video_id}&type=video&key=${firebaseConfig.apiKey}`
     return new Promise((resolve, reject) => {
         $.get(youtubeApi)
             .done(results => {
