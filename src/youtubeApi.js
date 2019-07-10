@@ -3,8 +3,7 @@ var youtubeVideoDivContainer = $('#playerContainer');
 //This array contains a set of video id's from Tasty;
 var bestCookingVidsId = [{ video_id: "vEROU2XtPR8", author: "Traversy Media", title: "JavaScript Fundamentals For Beginners", video_quality: "medium", video_quality_features: Array(0) }, { video_id: "z4L2E6_Gmkk", author: "Tasty", title: "I Made A Giant 30-Pound Burger", video_quality: "medium", video_quality_features: Array(0) }, { video_id: "hHW1oY26kxQ", author: "ChilledCow", title: "lofi hip hop radio - beats to relax/study to", video_quality: "medium", video_quality_features: Array(0) }];
 
-var curatedVideos;
-Promise.all(bestCookingVidsId.map(video => { return getUserRecommendeds(video) })).then(results => { curatedVideos = results })
+// Promise.all(bestCookingVidsId.map(video => { return getUserRecommendeds(video) })).then(results => { curatedVideos = results })
 var userReccomendations;
 
 
@@ -22,7 +21,7 @@ var giveMeRandomVid = () => {
         video = videoList[randNum(0, videoList.length)].video_id;
     } else {
         let vidId = videoList[randNum(0, videoList.length)]
-        var random = randNum(1, vidId.items.length)
+        var random = randNum(0, vidId.items.length)
         video = vidId.items[random].id.videoId;
     }
     if (video) {
