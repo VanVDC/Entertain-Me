@@ -64,8 +64,8 @@ function saveVid(uid, data) {
         db.collection('users').doc(uid).update({
             videoIds: firebase.firestore.FieldValue.arrayUnion(data)
         }).then(() => {
-            readData(uid)
-            if (userVidIds.length > 5 && userVidIds.length < 7) {
+            if (userVidIds.length >= 5 && userVidIds.length <= 7) {
+                readData(uid)
                 return reccomendVideos()
             } else {
                 return
@@ -78,8 +78,6 @@ function saveBook(uid, data) {
     if (!userBooks.includes(data) || userBooks === undefined) {
         return db.collection('users').doc(uid).update({
             books: firebase.firestore.FieldValue.arrayUnion(data)
-        }).then(() => {
-            return readData(uid)
         })
     }
 }
@@ -88,9 +86,6 @@ function saveMovie(uid, data) {
         return db.collection('users').doc(uid).update({
             movies: firebase.firestore.FieldValue.arrayUnion(data)
         })
-            .then(() => {
-                return readData(uid);
-            })
     }
 }
 function saveSong(uid, data) {
@@ -98,9 +93,6 @@ function saveSong(uid, data) {
         return db.collection('users').doc(uid).update({
             songs: firebase.firestore.FieldValue.arrayUnion(data)
         })
-            .then(() => {
-                return readData(uid)
-            })
     }
 }
 

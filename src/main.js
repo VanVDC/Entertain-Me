@@ -8,7 +8,7 @@ $('#entertainMeBtn').click(() => {
     document.getElementById('nyt_tmdb').setAttribute('style', 'display: none;');
     document.getElementById('errorStats').innerHTML = ""
     stopVideo();
-    random = Math.floor((Math.random() * 3) + 1);
+    random = Math.floor((Math.random() * 4) + 1);
     console.log(random);
     if (random === 1) {
         saveBtn.click(() => {

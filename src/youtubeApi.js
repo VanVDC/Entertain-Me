@@ -11,7 +11,7 @@ var userReccomendations;
 
 //This function calls out to the youtube search api using one of the Ids from our array.
 var giveMeRandomVid = () => {
-    if (isUsrLoggedIn && userReccomendations != undefined) {
+    if (userReccomendations != undefined) {
         videoList = userReccomendations;
     } else {
         videoList = curatedVideos
