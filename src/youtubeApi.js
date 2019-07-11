@@ -33,18 +33,6 @@ var giveMeRandomVid = () => {
     youtubeVideoDivContainer.css('display', 'block');
     youtubeVideoDivContainer.css('opacity', '1');
     youtubeVideoDivContainer.css('animation', 'videoOn 1s ease-in');
-    // $.get(youtubeApi)
-    //     .then(results => {
-    //         // youtubeVideoDiv.attr('src', `https://www.youtube.com/embed/${video}?enablejsapi=1&amp;origin=http%3A%2F%2F127.0.0.1%3A5500&amp;widgetid=1`)
-    //     })
-    //     .fail(() => {
-    //         document.getElementById('errorStats').innerHTML = "We've reached our youtube quota for today sorry!";
-    //         player.loadVideoById(vidId.video_id)
-    //         // document.getElementById('player').setAttribute('style', 'display: none;')
-    //         youtubeVideoDivContainer.css('display', 'block');
-    //         youtubeVideoDivContainer.css('opacity', '1');
-    //         youtubeVideoDivContainer.css('animation', 'videoOn 1s ease-in');
-    //     })
 
     //After our ajax request is fufilled we set the iframe to display block and add a src attribute
 }
@@ -113,12 +101,6 @@ function onPlayerReady(event) {
 //    The function indicates that when playing a video (state=1),
 //    the player should play for six seconds and then stop.
 var done = false;
-// function onPlayerStateChange(event) {
-//     if (event.data == YT.PlayerState.PLAYING && !done) {
-//         setTimeout(stopVideo, 6000);
-//         done = true;
-//     }
-// }
 function stopVideo() {
     player.stopVideo();
 }
