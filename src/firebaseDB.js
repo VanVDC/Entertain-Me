@@ -36,8 +36,12 @@ firebase.auth().onAuthStateChanged(function (user) {
                 location = `./index.html`
             }, function (error) { });
         })
+        $('.container_footer_left').css('grid-column', 'span 1')
+        $('.container_footer_right').css('display', 'flex')
     } else {
         isUsrLoggedIn = false;
+        $('.container_footer_left').css('grid-column', 'span 2')
+        $('.container_footer_right').css('display', 'none')
         login.text('Login');
         login.click(() => {
             ui.start('#firebaseui-auth-container', uiConfig);
@@ -48,14 +52,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 function userDataHTML(name, uid, ) {
-    $('#userName').text(name);
-    login.removeClass('bouncy');
     login.text('Sign Out');
-    if (userVidIds.length > 1) {
-        videosHTML = userVidIds.map(video => {
-            return `<div class="likedContent"></div>`
-        })
-    }
 }
 
 

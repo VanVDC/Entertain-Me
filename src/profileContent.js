@@ -1,11 +1,10 @@
-var saveBtn = $('#savebtn')
-var modalSaved = $('#myModalSaved')
+// var saveBtn = $('#savebtn')
+// var modalSaved = $('#myModalSaved')
+// var videosHTML;
 
-saveBtn.onclick = function() {
-    saveModal.style.display = "block";
-}
-
-document.getElementById('movies').innerText=movies.title;
-document.getElementById('youtube').innerHTML = userVidIds.map(video =>{
-    return `<div><p>${video.}</div>`
-})
+// saveBtn.onclick = function () {
+//     modalSaved.style.display = "block";
+//     console.log('hello')
+//     document.getElementById('movies').innerText = movies.title;
+//     document.getElementById('youtubeVideo').innerHTML = videosHTML
+// }
