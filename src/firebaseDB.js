@@ -6,7 +6,7 @@ var userMovies;
 var curatedVideos;
 var video;
 var isUsrLoggedIn = false;
-var saveBtn = document.getElementById('saveButton')
+
 //This UID will be used for our saved function. 
 //It is assigned a value when the user logs in.
 var uid;

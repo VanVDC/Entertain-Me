@@ -27,7 +27,9 @@ $('#entertainMeBtn').click(() => {
         })
         document.getElementById('nyt_tmdb').setAttribute('style', 'display: block');
         getMovies()
-    } else if (random == 4) {
+    } else if (random === 4) {
+        document.getElementById('nyt_tmdb').setAttribute('style', 'display: block');
+        newRandomSong()
         saveBtn.click(() => {
             saveSong(uid, song)
         })
