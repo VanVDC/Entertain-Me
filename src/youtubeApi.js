@@ -11,7 +11,7 @@ var giveMeRandomVid = () => {
         userVidIds = bestCookingVidsId;
     }
     let vidId = userVidIds[randNum(0, userVidIds.length)]
-    var youtubeApi = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&relatedToVideoId=${vidId.video_id}&type=video&key=${firebaseConfig.apiKey}`
+    var youtubeApi = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&relatedToVideoId=${vidId.video_id}&type=video&key=${firebaseConfig.apiKey}`
     $.get(youtubeApi)
         .then(results => {
             var random = randNum(1, results.pageInfo.resultsPerPage)
