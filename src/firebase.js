@@ -38,7 +38,32 @@ var uiConfig = {
 
 
 /* Modal code */
+
+/* Saved Modal */
+
 // Get the modal
+var saveModal = document.getElementById("myModalSaved");
+
+var saveBtn = document.getElementById("saved-content");
+
+var saveSpan = document.getElementsByClassName("closeSaved")[0];
+
+saveBtn.onclick = function() {
+saveModal.style.display = "block";
+}
+
+saveSpan.onclick = function() {
+saveModal.style.display = "none";
+}
+
+window.onclick = function(event) {
+if (event.target == modal) {
+    saveModal.style.display = "none";
+    }
+}
+
+//login modal
+
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal

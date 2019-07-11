@@ -79,8 +79,8 @@ function readData(uid) {
         if (doc.exists) {
             console.log("Document data:", doc.data());
             userVidIds = doc.data().videoIds;
-            userbooks = doc.data().books;
-            usermovies = doc.data().movies;
+            userBooks = doc.data().books;
+            userMovies = doc.data().movies;
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
