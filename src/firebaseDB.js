@@ -3,6 +3,7 @@ var userVidIds;
 var userBooks;
 var userSongs;
 var userMovies;
+var curatedVideos;
 var video;
 var isUsrLoggedIn = false;
 
@@ -59,32 +60,40 @@ function userDataHTML(name, uid, ) {
 
 
 function saveVid(uid, data) {
-    db.collection('users').doc(uid).update({
-        videoIds: firebase.firestore.FieldValue.arrayUnion(data)
-    })
-    if (userVidIds.length > 3 && userVidIds.length < 10) {
-        reccomendVideos()
+    if (!userVidIds.includes(data) || userVidIds === undefined) {
+        db.collection('users').doc(uid).update({
+            videoIds: firebase.firestore.FieldValue.arrayUnion(data)
+        }).then(() => {
+            if (userVidIds.length >= 5 && userVidIds.length <= 7) {
+                readData(uid)
+                return reccomendVideos()
+            } else {
+                return
+            }
+        })
     }
-    return readData()
 }
 
 function saveBook(uid, data) {
-    db.collection('users').doc(uid).update({
-        books: firebase.firestore.FieldValue.arrayUnion(data)
-    })
-    return readData(uid)
+    if (!userBooks.includes(data) || userBooks === undefined) {
+        return db.collection('users').doc(uid).update({
+            books: firebase.firestore.FieldValue.arrayUnion(data)
+        })
+    }
 }
 function saveMovie(uid, data) {
-    db.collection('users').doc(uid).update({
-        movies: firebase.firestore.FieldValue.arrayUnion(data)
-    })
-    return readData(uid)
+    if (!userMovies.includes(data) || userMovies === undefined) {
+        return db.collection('users').doc(uid).update({
+            movies: firebase.firestore.FieldValue.arrayUnion(data)
+        })
+    }
 }
 function saveSong(uid, data) {
-    db.collection('users').doc(uid).update({
-        songs: firebase.firestore.FieldValue.arrayUnion(data)
-    })
-    return readData(uid)
+    if (!userSongs.includes(data) || userSongs === undefined) {
+        return db.collection('users').doc(uid).update({
+            songs: firebase.firestore.FieldValue.arrayUnion(data)
+        })
+    }
 }
 
 
@@ -112,3 +121,10 @@ function readData(uid) {
         console.log("Error getting document:", error);
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    let vidDocRef = db.collection('videos').doc('curatedVideos');
+    vidDocRef.get().then(doc => {
+        curatedVideos = doc.data().videos
+    })
+})
