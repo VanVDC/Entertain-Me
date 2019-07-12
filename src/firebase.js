@@ -74,6 +74,7 @@ saveBtn.onclick = function () {
 function playSavedVid(id) {
     youtubeVideoDivContainer.css('opacity', '1');
     youtubeVideoDivContainer.css('display', 'block');
+    document.getElementById('nyt_tmdb').setAttribute('style', 'display: none;');
     player.loadVideoById(id)
     return saveModal.style.display = "none"
 
@@ -117,8 +118,17 @@ span.onclick = function () {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-    if (event.target == modal) {
+    if (event.target == modal || event.target == saveModal) {
         modal.style.display = "none";
         saveModal.style.display = "none";
     }
+}
+
+
+$('#about').click(() => {
+    showAbout()
+})
+
+function showAbout() {
+    return location = `about_index.html`
 }

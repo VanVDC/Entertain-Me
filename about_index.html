@@ -34,34 +34,38 @@
                     <button id="entertainMeBtn">About Us</button>
                 </div>
             </div>
-            <div class = "paragraph">
-              <h3>We’re just a bunch of guys learning to code with an idea for a web app that lets people discover new and interesting content from the web. Whether it be a youtube video, a song, a movie, or a book there’s nothing you can’t discover. Don’t want to watch a video about the mating habits of sloths or learn about the french arthouse film Wings of Desire?  Don’t fret! Personalize what you want to see by saving and curating the different types of media that strike your fancy! Go ahead and find out what the internet has to offer!</h3>
+            <div class="paragraph">
+                <h3>We’re just a bunch of guys learning to code with an idea for a web app that lets people discover new
+                    and interesting content from the web. Whether it be a youtube video, a song, a movie, or a book
+                    there’s nothing you can’t discover. Don’t want to watch a video about the mating habits of sloths or
+                    learn about the french arthouse film Wings of Desire? Don’t fret! Personalize what you want to see
+                    by saving and curating the different types of media that strike your fancy! Go ahead and find out
+                    what the internet has to offer!</h3>
             </div>
-            <div class ="group">
-              <div id ="jesus">
-                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                <p>Jesus</p>
-              </div>  
-              <div id ="matt">
-                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                <p>Matt</p>
-              </div>
-              <div id="alex">
-                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                <p>Alex</p>
-              </div>
-              <div id="van">
-                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                <p>Van</p>
-              </div>
+            <div class="group">
+                <div id="jesus">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    <p>Jesus</p>
+                </div>
+                <div id="matt">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    <p>Matt</p>
+                </div>
+                <div id="alex">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    <p>Alex</p>
+                </div>
+                <div id="van">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    <p>Van</p>
+                </div>
             </div>
         </main>
         <section class="container_footer_left">
             <div class="" id="home" style="width: 100%;height: 100%;margin: auto">
-                <a id="home_link"href="index.html">Home</a>
+                <a id="home_link" href="index.html">Home</a>
             </div>
-        </section> 
-        <section class="container_footer_right">Saved</section>
+        </section>
     </div>
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -76,13 +80,21 @@
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
-    <script src="./src/apiKeys.js"></script>
+    <script>
+        $(`#home`).click(() => {
+            showHome()
+        })
+        function showHome() {
+            return location = `index.html`
+        }
+    </script>
+    <!-- <script src="./src/apiKeys.js"></script>
     <script src="./src/vanApi.js"></script>
     <script src="./src/firebase.js"></script>
     <script src="./src/firebaseDB.js"></script>
     <script src="./src/youtubeApi.js"></script>
     <script src="./src/songApi.js"></script>
-    <script src="./src/main.js"></script>
+    <script src="./src/main.js"></script> -->
 </body>
 
 </html>
