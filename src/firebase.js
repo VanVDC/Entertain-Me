@@ -50,22 +50,24 @@ var saveSpan = document.getElementsByClassName("closeSaved")[0];
 
 saveBtn.onclick = function () {
     saveModal.style.display = "block";
-    let videosHTML = userVidIds.map(video => {
-        if (video.title === "") {
-            video.title = "Unknown"
-        }
-        if (video.author === "") {
-            video.author = "Unknown"
-        }
-        return `<div class="userSavedInfo"><p>${video.author}</p><p>${video.title}</p> <button style="margin-top: 100px; border: 1px solid black; border-radius: 50px; heigh: 100px; width: 50%;" onClick="playSavedVid('${video.video_id}')">Play</button></div>`
+    readData(uid).then(() => {
+        let videosHTML = userVidIds.map(video => {
+            if (video.title === "") {
+                video.title = "Unknown"
+            }
+            if (video.author === "") {
+                video.author = "Unknown"
+            }
+            return `<div class="userSavedInfo"><p>${video.author}</p><p>${video.title}</p> <button style="margin-top: 100px; border: 1px solid black; border-radius: 50px; heigh: 100px; width: 50%;" onClick="playSavedVid('${video.video_id}')">Play</button></div>`
+        })
+        document.getElementById('youtubeVideo').innerHTML = videosHTML.join('')
+        document.getElementById('savedMovies').innerHTML = userMovies.map(movie => {
+            return `<div class="userSavedInfo"><p>${movie.title}</p><p>${movie.release_date}</p><img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" width="200px" height="200px"></div>`
+        }).join('')
+        document.getElementById('savedBooks').innerHTML = userBooks.map(book => {
+            return `<div class="userSavedInfo"><p>${book.title}</p><p>${book.author}</p><img src="${book.book_image}" width="200px" height="200px"><br><a href="${book.amazon_product_url}">Amazon</a></div>`
+        }).join('')
     })
-    document.getElementById('youtubeVideo').innerHTML = videosHTML.join('')
-    document.getElementById('savedMovies').innerHTML = userMovies.map(movie => {
-        return `<div class="userSavedInfo"><p>${movie.title}</p><p>${movie.release_date}</p><img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" width="200px" height="200px"></div>`
-    }).join('')
-    document.getElementById('savedBooks').innerHTML = userBooks.map(book => {
-        return `<div class="userSavedInfo"><p>${book.title}</p><p>${book.author}</p><img src="${book.book_image}" width="200px" height="200px"><br><a href="${book.amazon_product_url}">Amazon</a></div>`
-    }).join('')
 }
 
 
