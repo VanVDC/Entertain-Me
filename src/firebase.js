@@ -62,7 +62,8 @@ saveBtn.onclick = function () {
         })
         document.getElementById('youtubeVideo').innerHTML = videosHTML.join('')
         document.getElementById('savedMovies').innerHTML = userMovies.map(movie => {
-            return `<div class="userSavedInfo"><p>${movie.title}</p><p>${movie.release_date}</p><img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" width="200px" height="200px"></div>`
+            console.log(movie)
+            return `<div class="userSavedInfo"><p>${movie.title}</p><p>${movie.release_date}</p><img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" width="200px" height="200px"><button style="padding-bottom: 40px;" onClick="showMovie('${movie.id}')">Info</button></div>`
         }).join('')
         document.getElementById('savedBooks').innerHTML = userBooks.map(book => {
             return `<div class="userSavedInfo"><p>${book.title}</p><p>${book.author}</p><img src="${book.book_image}" width="200px" height="200px"><br><a href="${book.amazon_product_url}">Amazon</a></div>`
@@ -70,6 +71,21 @@ saveBtn.onclick = function () {
     })
 }
 
+
+function showMovie(id) {
+    movie = userMovies.find(userMovie => {
+        return userMovie.id == id
+    })
+    const { poster_path, overview, original_title } = movie; //data
+    let img = document.getElementById('img'); // get the img tag
+    img.setAttribute('src', imgLink + poster_path);
+    document.getElementById('title').textContent = original_title; //render the title
+    document.getElementById('summary').textContent = overview; // render the summary
+    youtubeVideoDivContainer.css('opacity', '0');
+    youtubeVideoDivContainer.css('display', 'none');
+    document.getElementById('nyt_tmdb').setAttribute('style', 'display: block;');
+    return saveModal.style.display = "none"
+}
 
 function playSavedVid(id) {
     youtubeVideoDivContainer.css('opacity', '1');
