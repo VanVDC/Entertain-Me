@@ -95,8 +95,7 @@ main {
     border-radius: 5px;
 }
 #img {
-    max-height: 800px;
-    max-width: 250px;
+    max-width: 350px;
 }
 #entertainMeBtn {
     font-size: 90px;
