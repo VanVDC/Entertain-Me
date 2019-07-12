@@ -120,8 +120,19 @@ function readData(uid) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    let vidDocRef = db.collection('videos').doc('curatedVideos');
+    let vidDocRef = db.collection('videos').doc('curatedVideos')
     vidDocRef.get().then(doc => {
-        curatedVideos = doc.data().videos
+        if (doc.exists) {
+            curatedVideos = doc.data().videos
+        } else {
+            debugger
+            Promise.all(bestCookingVidsId.map(video => { return getUserRecommendeds(video) })).then(results => {
+                vidDocRef.set({
+                    videos: results
+                })
+                curatedVideos = results
+                return curatedVideos
+            })
+        }
     })
 })

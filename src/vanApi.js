@@ -2,33 +2,19 @@ var currentMovie;
 var currentBook;
 
 async function getNYT() {
-
     const nytURL = 'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=' + key.NYT;
     const rawNYTBooks = await fetch(nytURL);
     const nytbooks = await rawNYTBooks.json(); //create a New York Time URL
     let ran = Math.floor((Math.random() * 15) + 1) // create a random number for API index
-
     //Created a global var to assign data to be store for firebasedb
     currentBook = nytbooks.results.books[ran]
-    //data
     let { title, author, book_image, description, amazon_product_url } = nytbooks.results.books[ran];
-
-    // console.log(book_image);
-    // console.log(title);
-    // console.log(author);
-    // console.log(description);
-    // console.log(amazon_product_url);
-
-
     let img = document.getElementById('img'); // get the img tag
     img.setAttribute('src', book_image);
     document.getElementById('title').textContent = title; //render the title
-
     document.getElementById('summary').textContent = description;//render the summary
-
     let a = document.getElementById('amazonURL')
     a.setAttribute('href', amazon_product_url); //render the amazon link
-
 }
 
 // getNYT();

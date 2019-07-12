@@ -6,9 +6,6 @@ var bestCookingVidsId = [{ video_id: "vEROU2XtPR8", author: "Traversy Media", ti
 // Promise.all(bestCookingVidsId.map(video => { return getUserRecommendeds(video) })).then(results => { curatedVideos = results })
 var userReccomendations;
 
-
-
-
 //This function calls out to the youtube search api using one of the Ids from our array.
 var giveMeRandomVid = () => {
     if (userReccomendations != undefined) {
@@ -33,9 +30,10 @@ var giveMeRandomVid = () => {
     youtubeVideoDivContainer.css('display', 'block');
     youtubeVideoDivContainer.css('opacity', '1');
     youtubeVideoDivContainer.css('animation', 'videoOn 1s ease-in');
-
     //After our ajax request is fufilled we set the iframe to display block and add a src attribute
 }
+
+
 function reccomendVideos() {
     if (userVidIds === undefined) {
         userReccomendations = curatedVideos;
@@ -43,8 +41,6 @@ function reccomendVideos() {
         Promise.all(userVidIds.map(video => { return getUserRecommendeds(video) })).then(results => { userReccomendations = results })
     }
 }
-
-
 function getUserRecommendeds(video) {
     var youtubeApi = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&relatedToVideoId=${video.video_id}&type=video&key=${firebaseConfig.apiKey}`
     return new Promise((resolve, reject) => {
@@ -69,10 +65,8 @@ var randNum = function (min, max) {
     }
 }
 
-
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
-
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -84,17 +78,8 @@ window.onYouTubeIframeAPIReady = function () {
     player = new YT.Player('player', {
         height: '100%',
         width: '100%',
-        videoId: 'M7lc1UVf-VE',
-        // events: {
-        //     'onReady': onPlayerReady,
-        //     'onStateChange': onPlayerStateChange
-        // }
+        videoId: 'M7lc1UVf-VE'
     });
-}
-
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    // event.target.playVideo();
 }
 
 // 5. The API calls this function when the player's state changes.

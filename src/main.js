@@ -1,7 +1,9 @@
-var apiResults = $('#apiResults')
+var apiResults = $('#apiResults');
 var random;
-var saveBtn = $('#saveButton')
+var saveBtn = $('#saveButton');
+const main = document.getElementById("main");
 $('#entertainMeBtn').click(() => {
+    main.classList.add("expanded");
     //This portion sets our iframe element to hide
     youtubeVideoDivContainer.css('opacity', '0');
     youtubeVideoDivContainer.css('display', 'none');
