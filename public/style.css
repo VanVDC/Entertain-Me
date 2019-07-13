@@ -97,15 +97,9 @@ main.expanded {
 
 
 #nyt_tmdb {
-<<<<<<< HEAD
-    font-family: 'FrankfurterHigD';
-    font-size: 18px;
-    color: #6E675F;
-=======
     /*font-family: 'FrankfurterHigD';*/
     font-size: 22px;
     color: #a39594;
->>>>>>> 3c857518d86f05f886541a20ecc6a8fdc02800cf
 }
 #buttonContainer{
     width: 100%;
@@ -388,6 +382,38 @@ button{
         border-color:#FFFFFF;
         cursor: pointer;
 }
+.lds-hourglass {
+    display: none;
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+  .lds-hourglass:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 6px;
+    box-sizing: border-box;
+    border: 26px solid #e3b23c;
+    border-color: #e3b23c transparent #e3b23c transparent;
+    animation: lds-hourglass 1.2s infinite;
+  }
+  @keyframes lds-hourglass {
+    0% {
+      transform: rotate(0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+      transform: rotate(900deg);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+      transform: rotate(1800deg);
+    }
+  }
+  
 @media all and (max-width:30em){
     a.button5{
     display:block;

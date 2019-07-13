@@ -71,13 +71,7 @@ function showMovie(id) {
 function renderUserSaved(uid) {
     readData(uid).then(() => {
         let videosHTML = userVidIds.map(video => {
-            if (video.title === "") {
-                video.title = "Unknown"
-            }
-            if (video.author === "") {
-                video.author = "Unknown"
-            }
-            return `<div class="userSavedInfo"><h4>Video</h4><p>${video.author}</p><p>${video.title}</p><a class="button5" style="background-color:#42cc8c;" onClick="playSavedVid('${video.video_id}')">Play</a><a class="button5" style="background-color:Red;" onClick="deleteItem('${video.video_id}', 'video', '${uid}')">Remove</a></div>`
+            return `<div class="userSavedInfo"><h4>Video</h4><p>${video.author === "" ? "Unknown" : video.author}</p><p>${video.title === "" ? "Unknown" : video.title}</p><a class="button5" style="background-color:#42cc8c;" onClick="playSavedVid('${video.video_id}')">Play</a><a class="button5" style="background-color:Red;" onClick="deleteItem('${video.video_id}', 'video', '${uid}')">Remove</a></div>`
         })
         document.getElementById('youtubeVideo').innerHTML = videosHTML.join('')
         document.getElementById('savedMovies').innerHTML = userMovies.map(movie => {

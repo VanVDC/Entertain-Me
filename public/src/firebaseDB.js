@@ -58,14 +58,12 @@ function userDataHTML(name, uid, ) {
 
 function saveVid(uid, data) {
     if (!userVidIds.includes(data) || userVidIds === undefined) {
-        db.collection('users').doc(uid).update({
+        return db.collection('users').doc(uid).update({
             videoIds: firebase.firestore.FieldValue.arrayUnion(data)
         }).then(() => {
             if (userVidIds.length >= 5 && userVidIds.length <= 7) {
                 readData(uid)
                 return reccomendVideos()
-            } else {
-                return
             }
         })
     }

@@ -14,6 +14,7 @@ async function getNYT() {
     document.getElementById('title').textContent = title; //render the title
     document.getElementById('summary').textContent = description;//render the summary
     let a = document.getElementById('amazonURL')
+    a.innerText = 'Amazon'
     a.setAttribute('href', amazon_product_url); //render the amazon link
 }
 
@@ -58,7 +59,11 @@ async function getMovies() {
         img1.setAttribute('src', imgLink + poster_path);
         document.getElementById('title').textContent = original_title; //render the title
         document.getElementById('summary').textContent = overview; // render the summary
-
+        let a = document.getElementById('amazonURL');
+        a.innerText = 'Trailer'
+        let titleEncoded = encodeURIComponent(original_title)
+        let youtubeSearch = "https://www.youtube.com/results?search_query=" + titleEncoded + ' movie';
+        a.setAttribute('href', youtubeSearch);
 
     } else {
         const rawData = await fetch(url); // get the raw data
@@ -74,6 +79,11 @@ async function getMovies() {
         img.setAttribute('src', imgLink + poster_path);
         document.getElementById('title').textContent = original_title; //render the title
         document.getElementById('summary').textContent = overview; // render the summary
+        let a = document.getElementById('amazonURL');
+        a.innerText = 'Trailer'
+        let titleEncoded = encodeURIComponent(original_title)
+        let youtubeSearch = "https://www.youtube.com/results?search_query=" + titleEncoded + ' movie';
+        a.setAttribute('href', youtubeSearch);
     }
 
 
