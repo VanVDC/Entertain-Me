@@ -96,13 +96,22 @@ async function getMovies() {
         document.getElementById('summary').textContent = overview; // render the summary
         let a = document.getElementById('amazonURL');
         a.innerText = 'Trailer'
-        let titleEncoded = encodeURIComponent(original_title)
-        let youtubeSearch = "https://www.youtube.com/results?search_query=" + titleEncoded + ' movie';
-        a.setAttribute('href', youtubeSearch);
+        const videoURL = `http://api.themoviedb.org/3/movie/${id}/videos?api_key=${key.tmdb}`
+        $.get(videoURL).then(response => {
+            console.log(response)
+            let trailer = response.results[0].key;
+            return trailer
+        }).then(trailer => {
+            a.addEventListener('click', e => {
+                e.preventDefault()
+                document.getElementById('nyt_tmdb').setAttribute('style', 'display: none;');
+                youtubeVideoDivContainer.css('opacity', '1');
+                youtubeVideoDivContainer.css('display', 'block');
+                player.loadVideoById(trailer)
+            })
+        })
+
+
     }
-
-
-
-}
 // getMovies()
 
