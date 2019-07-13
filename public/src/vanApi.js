@@ -46,7 +46,6 @@ async function getMovies() {
         if (userMovies.length > 1) {
             rand = Math.floor((Math.random() * userMovies.length) + 0);
         }
-
         console.log(rand)
         const idMovieUrl = 'https://api.themoviedb.org/3/movie/' + userMovies[rand].id + '/similar?api_key=' + key.tmdb + '&language=en-US&page=1'
         const idRaw = await fetch(idMovieUrl);
