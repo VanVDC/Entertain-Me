@@ -53,17 +53,32 @@ async function getMovies() {
         const idMovieData = await idRaw.json();
 
 
-        const { poster_path, overview, original_title } = idMovieData.results[ran];
+        const { poster_path, overview, original_title, id } = idMovieData.results[ran];
         currentMovie = idMovieData.results[ran];
+        console.log(currentMovie)
         let img1 = document.getElementById('img'); // get the img tag
         img1.setAttribute('src', imgLink + poster_path);
         document.getElementById('title').textContent = original_title; //render the title
         document.getElementById('summary').textContent = overview; // render the summary
+
+
         let a = document.getElementById('amazonURL');
         a.innerText = 'Trailer'
-        let titleEncoded = encodeURIComponent(original_title)
-        let youtubeSearch = "https://www.youtube.com/results?search_query=" + titleEncoded + ' movie';
-        a.setAttribute('href', youtubeSearch);
+        const videoURL = `http://api.themoviedb.org/3/movie/${id}/videos?api_key=${key.tmdb}`
+        $.get(videoURL).then(response => {
+            console.log(response)
+            let trailer = response.results[0].key;
+            return trailer
+        }).then(trailer => {
+            a.addEventListener('click', e => {
+                e.preventDefault()
+                document.getElementById('nyt_tmdb').setAttribute('style', 'display: none;');
+                youtubeVideoDivContainer.css('opacity', '1');
+                youtubeVideoDivContainer.css('display', 'block');
+                player.loadVideoById(trailer)
+            })
+        })
+
 
     } else {
         const rawData = await fetch(url); // get the raw data
