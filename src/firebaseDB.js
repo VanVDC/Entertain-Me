@@ -92,10 +92,31 @@ function saveSong(uid, data) {
         })
     }
 }
-function deleteItem(uid, data) {
+function deleteItem(id, type, uid) {
+    let data;
+    if (type === 'song') {
+        data = userSongs.find(song => {
+            return song.id == id
+        })
+    } else if (type === 'movie') {
+        data = userMovies.find(movie => {
+            return movie.id == id
+        })
+    } else if (type === 'book') {
+        data = userBooks.find(book => {
+            return book.primary_isbn10 == id
+        })
+    } else if (type === 'video') {
+        data = userVidIds.find(video => {
+            return video.video_id == id
+        })
+    }
     if (userMovies.includes(data) || userSongs.includes(data) || userVidIds.includes(data) || userBooks.includes(data)) {
         return db.collection('users').doc(uid).update({
-            movies: firebase.firestore.FieldValue.arrayRemove(data)
+            movies: firebase.firestore.FieldValue.arrayRemove(data),
+            videoIds: firebase.firestore.FieldValue.arrayRemove(data),
+            books: firebase.firestore.FieldValue.arrayRemove(data),
+            songs: firebase.firestore.FieldValue.arrayRemove(data)
         }).then(() => {
             renderUserSaved(uid)
         })

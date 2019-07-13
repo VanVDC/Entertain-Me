@@ -77,17 +77,17 @@ function renderUserSaved(uid) {
             if (video.author === "") {
                 video.author = "Unknown"
             }
-            return `<div class="userSavedInfo"><p>${video.author}</p><p>${video.title}</p> <a class="button5" style="background-color:#42cc8c;" onClick="playSavedVid('${video.video_id}')">Play</a></div>`
+            return `<div class="userSavedInfo"><h4>Video</h4><p>${video.author}</p><p>${video.title}</p><a class="button5" style="background-color:#42cc8c;" onClick="playSavedVid('${video.video_id}')">Play</a><a class="button5" style="background-color:Red;" onClick="deleteItem('${video.video_id}', 'video', '${uid}')">Remove</a></div>`
         })
         document.getElementById('youtubeVideo').innerHTML = videosHTML.join('')
         document.getElementById('savedMovies').innerHTML = userMovies.map(movie => {
-            return `<div class="userSavedInfo"><p>${movie.title}</p><p>${movie.release_date}</p><img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" width="200px" height="200px"><a class="button5" style="background-color:#42cc8c;" onClick="showMovie('${movie.id}')">Info</a> <a class="button5" style="background-color:Red;" onClick="deleteItem(${movie})">Remove</a></div>`
+            return `<div class="userSavedInfo"><h4>Movie</h4><p>${movie.title}</p><p>${movie.release_date}</p><img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" width="200px" height="200px"><a class="button5" style="background-color:#42cc8c;" onClick="showMovie('${movie.id}')">Info</a> <a class="button5" style="background-color:Red;" onClick="deleteItem('${movie.id}', 'movie', '${uid}')">Remove</a></div>`
         }).join('');
         document.getElementById('savedBooks').innerHTML = userBooks.map(book => {
-            return `<div class="userSavedInfo"><p>${book.title}</p><p>${book.author}</p><img src="${book.book_image}" width="200px" height="200px"><br><a href="${book.amazon_product_url}">Amazon</a><a class="button5" style="background-color:Red;" onClick="">Remove</a></div>`
+            return `<div class="userSavedInfo"><h4>Book</h4><p>${book.title}</p><p>${book.author}</p><img src="${book.book_image}" width="200px" height="200px"><br><a href="${book.amazon_product_url}">Amazon</a><a class="button5" style="background-color:Red;" onClick="deleteItem('${book.primary_isbn10}','book', '${uid}')">Remove</a></div>`
         }).join('');
         document.getElementById('savedSongs').innerHTML = userSongs.map(song => {
-            return `<div class="userSavedInfo"><p>${song.full_title}</p><img src="${song.header_image_thumbnail_url}" width="200px" height="150px"><br><a id="appleMusic" href="${song.apple_music_player_url}">Play</a><hr>${song.embed_content}<a class="button5" style="background-color:Red;" onClick="">Remove</a></div>`
+            return `<div class="userSavedInfo"><h4>Song</h4><p>${song.full_title}</p><img src="${song.header_image_thumbnail_url}" width="200px" height="150px"><br><a id="appleMusic" href="${song.apple_music_player_url}">Play</a><hr>${song.embed_content}<a class="button5" style="background-color:Red;" onClick="deleteItem('${song.id}','song', '${uid}')">Remove</a></div>`
         }).join('')
     })
 }
