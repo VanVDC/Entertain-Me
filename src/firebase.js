@@ -50,25 +50,7 @@ var saveSpan = document.getElementsByClassName("closeSaved")[0];
 
 saveBtn.onclick = function () {
     saveModal.style.display = "block";
-    readData(uid).then(() => {
-        let videosHTML = userVidIds.map(video => {
-            if (video.title === "") {
-                video.title = "Unknown"
-            }
-            if (video.author === "") {
-                video.author = "Unknown"
-            }
-            return `<div class="userSavedInfo"><p>${video.author}</p><p>${video.title}</p> <button style="margin-top: 100px; border: 1px solid black; border-radius: 50px; heigh: 100px; width: 50%;" onClick="playSavedVid('${video.video_id}')">Play</button></div>`
-        })
-        document.getElementById('youtubeVideo').innerHTML = videosHTML.join('')
-        document.getElementById('savedMovies').innerHTML = userMovies.map(movie => {
-            console.log(movie)
-            return `<div class="userSavedInfo"><p>${movie.title}</p><p>${movie.release_date}</p><img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" width="200px" height="200px"><button style="padding-bottom: 40px;" onClick="showMovie('${movie.id}')">Info</button></div>`
-        }).join('')
-        document.getElementById('savedBooks').innerHTML = userBooks.map(book => {
-            return `<div class="userSavedInfo"><p>${book.title}</p><p>${book.author}</p><img src="${book.book_image}" width="200px" height="200px"><br><a href="${book.amazon_product_url}">Amazon</a></div>`
-        }).join('')
-    })
+    renderUserSaved(uid)
 }
 
 
@@ -85,6 +67,29 @@ function showMovie(id) {
     youtubeVideoDivContainer.css('display', 'none');
     document.getElementById('nyt_tmdb').setAttribute('style', 'display: block;');
     return saveModal.style.display = "none"
+}
+function renderUserSaved(uid) {
+    readData(uid).then(() => {
+        let videosHTML = userVidIds.map(video => {
+            if (video.title === "") {
+                video.title = "Unknown"
+            }
+            if (video.author === "") {
+                video.author = "Unknown"
+            }
+            return `<div class="userSavedInfo"><p>${video.author}</p><p>${video.title}</p> <a class="button5" style="background-color:#42cc8c;" onClick="playSavedVid('${video.video_id}')">Play</a></div>`
+        })
+        document.getElementById('youtubeVideo').innerHTML = videosHTML.join('')
+        document.getElementById('savedMovies').innerHTML = userMovies.map(movie => {
+            return `<div class="userSavedInfo"><p>${movie.title}</p><p>${movie.release_date}</p><img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" width="200px" height="200px"><a class="button5" style="background-color:#42cc8c;" onClick="showMovie('${movie.id}')">Info</a> <a class="button5" style="background-color:Red;" onClick="deleteItem(${movie})">Remove</a></div>`
+        }).join('');
+        document.getElementById('savedBooks').innerHTML = userBooks.map(book => {
+            return `<div class="userSavedInfo"><p>${book.title}</p><p>${book.author}</p><img src="${book.book_image}" width="200px" height="200px"><br><a href="${book.amazon_product_url}">Amazon</a><a class="button5" style="background-color:Red;" onClick="">Remove</a></div>`
+        }).join('');
+        document.getElementById('savedSongs').innerHTML = userSongs.map(song => {
+            return `<div class="userSavedInfo"><p>${song.full_title}</p><img src="${song.header_image_thumbnail_url}" width="200px" height="150px"><br><a id="appleMusic" href="${song.apple_music_player_url}">Play</a><hr>${song.embed_content}<a class="button5" style="background-color:Red;" onClick="">Remove</a></div>`
+        }).join('')
+    })
 }
 
 function playSavedVid(id) {

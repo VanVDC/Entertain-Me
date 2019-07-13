@@ -92,6 +92,15 @@ function saveSong(uid, data) {
         })
     }
 }
+function deleteItem(uid, data) {
+    if (userMovies.includes(data) || userSongs.includes(data) || userVidIds.includes(data) || userBooks.includes(data)) {
+        return db.collection('users').doc(uid).update({
+            movies: firebase.firestore.FieldValue.arrayRemove(data)
+        }).then(() => {
+            renderUserSaved(uid)
+        })
+    }
+}
 
 
 
@@ -112,6 +121,8 @@ function readData(uid) {
                 books: [],
                 movies: [],
                 songs: []
+            }).then(() => {
+                return readData(uid)
             })
         }
     }).catch(function (error) {
@@ -120,8 +131,19 @@ function readData(uid) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    let vidDocRef = db.collection('videos').doc('curatedVideos');
+    let vidDocRef = db.collection('videos').doc('curatedVideos')
     vidDocRef.get().then(doc => {
-        curatedVideos = doc.data().videos
+        if (doc.exists) {
+            curatedVideos = doc.data().videos
+        } else {
+            debugger
+            Promise.all(bestCookingVidsId.map(video => { return getUserRecommendeds(video) })).then(results => {
+                vidDocRef.set({
+                    videos: results
+                })
+                curatedVideos = results
+                return curatedVideos
+            })
+        }
     })
 })
