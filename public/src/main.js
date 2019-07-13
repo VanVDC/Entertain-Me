@@ -5,6 +5,7 @@ var saveBtn = document.getElementById('saveButton')
 const main = document.getElementById("main");
 $('#entertainMeBtn').click(() => {
     document.getElementById('amazonURL').setAttribute('href', '');
+    document.getElementById('amazonURL').setAttribute('target', '');
     main.classList.add("expanded");
     saveBtn.innerText = 'Save'
     //This portion sets our iframe element to hide

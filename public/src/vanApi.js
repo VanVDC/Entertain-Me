@@ -88,7 +88,7 @@ async function getMovies() {
         currentMovie = movieData.results[ran]
 
 
-        const { poster_path, overview, original_title } = movieData.results[ran]; //data
+        const { poster_path, overview, original_title, id } = movieData.results[ran]; //data
 
         let img = document.getElementById('img'); // get the img tag
         img.setAttribute('src', imgLink + poster_path);
@@ -110,8 +110,10 @@ async function getMovies() {
                 player.loadVideoById(trailer)
             })
         })
-
-
     }
+
+
+
+}
 // getMovies()
 
