@@ -97,9 +97,15 @@ main.expanded {
 
 
 #nyt_tmdb {
+<<<<<<< HEAD
     font-family: 'FrankfurterHigD';
     font-size: 18px;
     color: #6E675F;
+=======
+    /*font-family: 'FrankfurterHigD';*/
+    font-size: 22px;
+    color: #a39594;
+>>>>>>> 3c857518d86f05f886541a20ecc6a8fdc02800cf
 }
 #buttonContainer{
     width: 100%;
@@ -355,6 +361,10 @@ button{
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+  }
+  #amazonURL{
+      color: #6E675F;
+      text-decoration: none;
   }
   a.button5{
     display:inline-block;
