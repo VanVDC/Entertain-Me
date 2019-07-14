@@ -46,7 +46,6 @@ async function getMovies() {
         if (userMovies.length > 1) {
             rand = Math.floor((Math.random() * userMovies.length) + 0);
         }
-        console.log(rand)
         const idMovieUrl = 'https://api.themoviedb.org/3/movie/' + userMovies[rand].id + '/similar?api_key=' + key.tmdb + '&language=en-US&page=1'
         const idRaw = await fetch(idMovieUrl);
         const idMovieData = await idRaw.json();
@@ -54,13 +53,12 @@ async function getMovies() {
 
         const { poster_path, overview, original_title, id } = idMovieData.results[ran];
         currentMovie = idMovieData.results[ran];
-        console.log(currentMovie)
         let img1 = document.getElementById('img'); // get the img tag
         img1.setAttribute('src', imgLink + poster_path);
         document.getElementById('title').textContent = original_title; //render the title
         document.getElementById('summary').textContent = overview; // render the summary
         let a = document.getElementById('amazonURL');
-        a.innerText = 'Trailer'
+        a.innerHTML = 'Trailer'
         const videoURL = `http://api.themoviedb.org/3/movie/${id}/videos?api_key=${key.tmdb}`
         $.get(videoURL).then(response => {
             let trailer = response.results[0].key;
@@ -82,23 +80,20 @@ async function getMovies() {
 
         //Adding a global var assignment for firebaseDB
         currentMovie = movieData.results[ran]
-
-
         const { poster_path, overview, original_title, id } = movieData.results[ran]; //data
-
         let img = document.getElementById('img'); // get the img tag
         img.setAttribute('src', imgLink + poster_path);
         document.getElementById('title').textContent = original_title; //render the title
         document.getElementById('summary').textContent = overview; // render the summary
         let a = document.getElementById('amazonURL');
-        a.innerText = 'Trailer'
+        a.innerHTML = `<button id="trailer">Trailer</button>`
         const videoURL = `http://api.themoviedb.org/3/movie/${id}/videos?api_key=${key.tmdb}`
         $.get(videoURL).then(response => {
             console.log(response)
             let trailer = response.results[0].key;
             return trailer
         }).then(trailer => {
-            a.addEventListener('click', e => {
+            document.getElementById('trailer').addEventListener('click', e => {
                 e.preventDefault()
                 document.getElementById('nyt_tmdb').setAttribute('style', 'display: none;');
                 youtubeVideoDivContainer.css('opacity', '1');
