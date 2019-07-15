@@ -11,11 +11,10 @@ $('#entertainMeBtn').click(() => {
     document.getElementById('nyt_tmdb').setAttribute('style', 'display: none;');
     document.getElementById('errorStats').innerHTML = ""
     document.getElementById('mainLoader').style.display = 'block'
+    stopVideo();
     //This portion sets our iframe element to hide
     setTimeout(() => {
-        stopVideo();
         random = Math.floor((Math.random() * 4) + 1);
-        console.log(random);
         if (random === 1) {
             saveBtn.addEventListener('click', () => {
                 saveBtn.style.display = 'none'
