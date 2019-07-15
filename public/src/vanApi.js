@@ -58,7 +58,7 @@ async function getMovies() {
         document.getElementById('summary').textContent = overview; // render the summary
         let a = document.getElementById('amazonURL');
         a.innerHTML = 'Trailer'
-        const videoURL = `http://api.themoviedb.org/3/movie/${id}/videos?api_key=${key.tmdb}`
+        const videoURL = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${key.tmdb}`
         $.get(videoURL).then(response => {
             let trailer = response.results[0].key;
             return trailer
