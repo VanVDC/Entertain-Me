@@ -14,8 +14,7 @@ async function getNYT() {
     document.getElementById('title').textContent = title; //render the title
     document.getElementById('summary').textContent = description;//render the summary
     let a = document.getElementById('amazonURL')
-    a.innerText = 'Amazon'
-    a.setAttribute('href', amazon_product_url); //render the amazon link
+    a.innerHTML = `<a href="${amazon_product_url}" target="_blank">Amazon</a>`
 }
 
 // getNYT();
